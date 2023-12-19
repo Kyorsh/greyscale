@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    <p1 id="rgbValueDisplay"></p1>
+    <button  class="" id="Start" onclick="reset()">Reset</button> 
+    <button  class="" id="Increase" onclick="increase(10)">+</button>
+    <button  class="" id="Decrease" onclick="decrease(10)">-</button>
+    
+   <script >
+   //Alert
+    window.alert(` K-Reset \n +/- Change by 10\n U-Increase by 1\n J-Decrease by 1 \n I-Interface-Show/Hide \n G-Gradient`);
+    var x;
+    var y;
+    var z;
+    var rgbString;
+    var thergb;
+    var shade;
+    reset();
+    //Toggle-Background
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "g") {
+            var element = document.getElementById("body")
+            element.classList.toggle("Gradient");
+            }});
+    //Interface-Toggle
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "i") {
+            var element = document.getElementById("Start")
+            element.classList.toggle("hidden");
+            }});
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "i") {
+            var element = document.getElementById("Increase")
+            element.classList.toggle("hidden");
+            }});
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "i") {
+            var element = document.getElementById("Decrease")
+            element.classList.toggle("hidden");}});
+    //Reset button
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "k") {
+        reset();
+        }});
+    //Increase Button
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "u") {
+            if (x > 0, x <= 255, y > 0, y <= 255, z > 0, z <= 255) {
+    increase(1);
+}}});
+    //Decrease Button
+    document.addEventListener("keydown", e => {
+        if (e.key.toLowerCase() === "j") {
+       decrease(1); }});
+    //Numbers
+    function numbers(){
+        
+    }
+    //Reset
+    function reset() {
+        x = 0; 
+        y = 0;
+        z = 0;
+        shadeStartRgb = "rgb(" + 30 + "," + 30 + "," + 30 + ")";
+
+        document.getElementById('rgbValueDisplay').style.color = shadeStartRgb;
+        thergb = "rgb(" + x + "," + y + "," + z + ")"; 
+        console.log(thergb,document.body.style.background);
+        document.body.style.backgroundColor=thergb;
+        rgbString = "RGB(" + x + "," + y +  ","+ z + ")";
+        document.getElementById('rgbValueDisplay').innerText = rgbString;
+    }
+    //Increase
+    function increase(a) {
+    if (x > 0, x <= 255, y > 0, y <= 255, z > 0, z <= 255) {
+        x = x + a;
+        y = y + a;
+        z = z + a;
+    
+        rgbString = "RGB(" + x + "," + y +  ","+ z + ")";
+        document.getElementById('rgbValueDisplay').innerText = rgbString;
+        thergb = "rgb(" + x + "," + y + "," + z + ")";
+        console.log(thergb,document.body.style.background);
+        document.body.style.backgroundColor=thergb; 
+       shade();
+    }
+    else if(x > 254, y = 254, z = 254){
+        x = 255;
+        y = 255;
+        z = 255;
+        shade();
+        rgbString = "RGB(" + x + "," + y +  ","+ z + ")";
+        document.getElementById('rgbValueDisplay').innerText = rgbString;
+        thergb = "rgb(" + x + "," + y + "," + z + ")";
+        console.log(thergb,document.body.style.background);
+        document.body.style.backgroundColor=thergb;     
+    }}
+    //Decrease
+    function decrease(b) {
+        x = x - b; 
+        y = y - b;
+        z = z - b;
+        thergb = "rgb(" + x + "," + y + "," + z + ")";
+        
+      if (x < b, y < b, z < b){
+      x = 0;
+      y = 0;
+      z = 0;}
+        console.log(thergb,document.body.style.background);
+        document.body.style.backgroundColor=thergb;
+        shade();
+      }
+    //Shade
+    function shade(){
+        Shade = x + y + z; 
+        shadeRplus = x + 30;
+        shadeGplus = y + 30;
+        shadeBplus = z + 30;
+
+        shadeRminus = x - 30;
+        shadeGminus = y - 30;
+        shadeBminus = z - 30;
+
+        shadeRgbPlus = "rgb(" + shadeRplus + "," + shadeGplus + "," + shadeBplus + ")";
+        shadeRgbMinus = "rgb(" + shadeRminus + "," + shadeGminus + "," + shadeBminus + ")";
+        rgbString = "RGB(" + x + "," + y +  ","+ z + ")";
+        document.getElementById('rgbValueDisplay').innerText = rgbString;
+        thergb = "rgb(" + x + "," + y + "," + z + ")";
+        console.log(thergb,document.body.style.background);
+        document.body.style.backgroundColor=thergb;
+
+        if (Shade <= 384){
+            document.getElementById('rgbValueDisplay').style.color = shadeRgbPlus;  
+        }
+        else{
+            document.getElementById('rgbValueDisplay').style.color = shadeRgbMinus;
+        }
+    }
+    </script>
+
+    <style>
+    .hidden{
+         visibility: hidden;
+    }
+    .Gradient {
+        background-image: linear-gradient(to right, rgb(64,64,64) , rgb(5,5,5));
+    }
+    body {
+        background: rgb(0,0,0);
+    }
+    #rgbValueDisplay {
+        color: rgb(0,0,0);
+    }
+    #Start {
+        margin: auto;
+        display: block;
+    }
+    #Increase {
+        margin: auto;
+        display: block;
+    }
+    #Decrease {
+        margin: auto;
+        margin-bottom: 100px;
+        display: block;
+      }</style>
+    
+</body>
+</html>
